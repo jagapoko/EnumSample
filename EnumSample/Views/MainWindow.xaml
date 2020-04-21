@@ -1,0 +1,40 @@
+﻿<Window x:Class="EnumSample.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnumSample"
+        xmlns:vm="clr-namespace:EnumSample.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ComboBox Grid.Column="0" Height="50" Width="200" ItemsSource="{Binding DataSource}"
+                  SelectedItem="{Binding SelectedItem.Value}" VerticalContentAlignment="Center"/>
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <TextBlock Text="{Binding ItemName.Value}"/>
+            <TextBlock Text="{Binding ItemPrice.Value}"/>
+            <TextBlock Text="{Binding ItemColor.Value}"/>
+            <Grid Height="100" Width="100" HorizontalAlignment="Left" Margin="10">
+                <Grid.Background>
+                    <SolidColorBrush Color="{Binding SelectedColor.Value}"/>
+                </Grid.Background>
+                <Image Source="{Binding ItemImage.Value}" Stretch="Uniform" />
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</Window>
